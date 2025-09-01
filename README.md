@@ -1,4 +1,4 @@
-# This is Snes9x running on the brand new ESP32-P4
+# This is Snes9x running on the ESP32-P4-Function-EV-Board by Espressif.
 
 This is based on [this](https://github.com/ducalex/retro-go/) repo.
 
