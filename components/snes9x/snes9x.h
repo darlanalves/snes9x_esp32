@@ -11,6 +11,8 @@
 
 #define ROM_NAME_LEN 23
 
+//#define DISABLE_TILE_CACHE
+
 /* SNES screen width and height */
 #define SNES_WIDTH            256
 #define SNES_HEIGHT           224

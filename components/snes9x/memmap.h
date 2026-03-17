@@ -81,7 +81,7 @@ enum
 
 enum
 {
-   MAX_ROM_SIZE = 0x400000 + 0x200,  // 4 MB cardridge + 512 bytes header
+   MAX_ROM_SIZE = 0x500000 + 0x200,  // 5 MB cardridge + 512 bytes header
    RAM_SIZE = 0x20000,
    SRAM_SIZE = 0x20000,
    VRAM_SIZE = 0x10000,
@@ -99,6 +99,7 @@ typedef struct
 {
    uint8_t* RAM;
    uint8_t* ROM;
+   uint8_t* PSRAM;
    uint8_t* VRAM;
    uint8_t* SRAM;
    uint8_t* FillRAM;
@@ -126,6 +127,7 @@ typedef struct
    uint8_t  ROMRegion;
    uint8_t  ExtendedFormat;
    uint32_t ROM_Size; // size of *ROM content
+   bool     ROM_is_writable;
 } CMemory;
 
 void ResetSpeedMap(void);

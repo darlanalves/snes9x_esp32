@@ -3,6 +3,9 @@
 #ifndef _CPUEXEC_H_
 #define _CPUEXEC_H_
 
+// #define OPCODES_IN_FLASH const  //uncomment to enable opcodes in flash (slower)
+#define OPCODES_IN_FLASH
+
 typedef struct
 {
    void (*S9xOpcode)(void);
@@ -36,11 +39,11 @@ void S9xDoHBlankProcessing(void);
 void S9xClearIRQ(uint32_t source);
 void S9xSetIRQ(uint32_t source);
 
-extern const SOpcodes S9xOpcodesE1   [256];
-extern const SOpcodes S9xOpcodesM1X1 [256];
-extern const SOpcodes S9xOpcodesM1X0 [256];
-extern const SOpcodes S9xOpcodesM0X1 [256];
-extern const SOpcodes S9xOpcodesM0X0 [256];
+extern OPCODES_IN_FLASH SOpcodes S9xOpcodesE1   [256];
+extern OPCODES_IN_FLASH SOpcodes S9xOpcodesM1X1 [256];
+extern OPCODES_IN_FLASH SOpcodes S9xOpcodesM1X0 [256];
+extern OPCODES_IN_FLASH SOpcodes S9xOpcodesM0X1 [256];
+extern OPCODES_IN_FLASH SOpcodes S9xOpcodesM0X0 [256];
 
 extern SICPU ICPU;
 

@@ -74,8 +74,17 @@ void writer_task(void *param)
     }
 }
 
-void i2s_audio::start(i2s_port_t i2sPort, i2s_pin_config_t &i2sPins, int sample_rate,int16_t* pcm_buffer, uint32_t pcm_buffer_len)
+void i2s_audio::start(int pin_bck, int pin_ws, int pin_dout, int sample_rate,int16_t* pcm_buffer, uint32_t pcm_buffer_len)
 {
+    i2s_port_t i2sPort = I2S_NUM_0;
+
+    i2s_pin_config_t i2sPins = {
+        .bck_io_num = pin_bck,
+        .ws_io_num = pin_ws,
+        .data_out_num = pin_dout,
+        .data_in_num = -1
+    };
+  
     m_sample_rate = sample_rate;
     m_current_position = 0;
     m_pcm_buffer = pcm_buffer;

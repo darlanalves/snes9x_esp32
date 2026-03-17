@@ -3953,7 +3953,7 @@ IRAM_ATTR static void Op42(void)
 }
 
 /* CPU-S9xOpcodes Definitions */
-const SOpcodes S9xOpcodesM1X1[256] =
+OPCODES_IN_FLASH SOpcodes S9xOpcodesM1X1[256] =
 {
    {Op00},      {Op01M1},    {Op02},      {Op03M1},    {Op04M1},
    {Op05M1},    {Op06M1},    {Op07M1},    {Op08},      {Op09M1},
@@ -4009,7 +4009,7 @@ const SOpcodes S9xOpcodesM1X1[256] =
    {OpFFM1}
 };
 
-const SOpcodes S9xOpcodesE1[256] =
+OPCODES_IN_FLASH SOpcodes S9xOpcodesE1[256] =
 {
     {Op00},	     {Op01M1},    {Op02},      {Op03M1},    {Op04M1},
     {Op05M1},    {Op06M1},    {Op07M1},    {Op08E1},    {Op09M1},
@@ -4065,7 +4065,7 @@ const SOpcodes S9xOpcodesE1[256] =
     {OpFFM1}
 };
 
-const SOpcodes S9xOpcodesM1X0[256] =
+OPCODES_IN_FLASH SOpcodes S9xOpcodesM1X0[256] =
 {
    {Op00},  {Op01M1},    {Op02},      {Op03M1},    {Op04M1},
    {Op05M1},    {Op06M1},    {Op07M1},    {Op08},      {Op09M1},
@@ -4121,7 +4121,7 @@ const SOpcodes S9xOpcodesM1X0[256] =
    {OpFFM1}
 };
 
-const SOpcodes S9xOpcodesM0X0[256] =
+OPCODES_IN_FLASH SOpcodes S9xOpcodesM0X0[256] =
 {
    {Op00},  {Op01M0},    {Op02},      {Op03M0},    {Op04M0},
    {Op05M0},    {Op06M0},    {Op07M0},    {Op08},      {Op09M0},
@@ -4177,7 +4177,7 @@ const SOpcodes S9xOpcodesM0X0[256] =
    {OpFFM0}
 };
 
-const SOpcodes S9xOpcodesM0X1[256] =
+OPCODES_IN_FLASH SOpcodes S9xOpcodesM0X1[256] =
 {
    {Op00},  {Op01M0},    {Op02},      {Op03M0},    {Op04M0},
    {Op05M0},    {Op06M0},    {Op07M0},    {Op08},      {Op09M0},

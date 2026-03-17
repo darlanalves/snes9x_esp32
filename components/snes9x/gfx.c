@@ -428,7 +428,7 @@ static INLINE void SelectTileRenderer(bool normal)
    }
 }
 
-void S9xSetupOBJ(void)
+IRAM_ATTR void S9xSetupOBJ(void)
 {
    int32_t Height;
    uint8_t S;
@@ -823,7 +823,7 @@ IRAM_ATTR static void DrawOBJS(bool OnMain, uint8_t D)
    }
 }
 
-static void DrawBackgroundMosaic(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
+IRAM_ATTR static void DrawBackgroundMosaic(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
 {
    uint32_t Lines;
    uint32_t OffsetMask;
@@ -1022,7 +1022,7 @@ static void DrawBackgroundMosaic(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8
    }
 }
 
-static void DrawBackgroundOffset(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
+IRAM_ATTR static void DrawBackgroundOffset(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
 {
    uint32_t Tile;
    uint16_t* SC0;
@@ -1318,7 +1318,7 @@ static void DrawBackgroundOffset(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8
    }
 }
 
-static void DrawBackgroundMode5(uint32_t bg, uint8_t Z1, uint8_t Z2)
+IRAM_ATTR static void DrawBackgroundMode5(uint32_t bg, uint8_t Z1, uint8_t Z2)
 {
    uint32_t Tile;
    uint16_t* SC0;
@@ -1571,7 +1571,7 @@ static void DrawBackgroundMode5(uint32_t bg, uint8_t Z1, uint8_t Z2)
    GFX.PPL = IPPU.DoubleHeightPixels ? GFX.PPLx2 : (GFX.PPLx2 >> 1);
 }
 
-static void DrawBackground(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
+IRAM_ATTR static void DrawBackground(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
 {
    uint32_t Tile;
    uint16_t* SC0;
@@ -2012,32 +2012,32 @@ static void DrawBackground(uint32_t BGMode, uint32_t bg, uint8_t Z1, uint8_t Z2)
    } \
     }
 
-static void DrawBGMode7Background(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint8_t, (uint8_t) (b & GFX.Mode7Mask))
 }
 
-static void DrawBGMode7Background16(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint16_t, ScreenColors [b & GFX.Mode7Mask]);
 }
 
-static void DrawBGMode7Background16Add(uint8_t * Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Add(uint8_t * Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_ADD(ScreenColors[b & GFX.Mode7Mask], p[GFX.Delta]) : COLOR_ADD(ScreenColors[b & GFX.Mode7Mask], GFX.FixedColour)) : ScreenColors[b & GFX.Mode7Mask]);
 }
 
-static void DrawBGMode7Background16Add1_2(uint8_t * Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Add1_2(uint8_t * Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_ADD1_2(ScreenColors[b & GFX.Mode7Mask], p[GFX.Delta]) : COLOR_ADD(ScreenColors[b & GFX.Mode7Mask], GFX.FixedColour)) : ScreenColors[b & GFX.Mode7Mask]);
 }
 
-static void DrawBGMode7Background16Sub(uint8_t * Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Sub(uint8_t * Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_SUB(ScreenColors[b & GFX.Mode7Mask], p[GFX.Delta]) : COLOR_SUB(ScreenColors[b & GFX.Mode7Mask], GFX.FixedColour)) : ScreenColors[b & GFX.Mode7Mask]);
 }
 
-static void DrawBGMode7Background16Sub1_2(uint8_t * Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Sub1_2(uint8_t * Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_SUB1_2(ScreenColors[b & GFX.Mode7Mask], p[GFX.Delta]) : COLOR_SUB(ScreenColors[b & GFX.Mode7Mask], GFX.FixedColour)) : ScreenColors[b & GFX.Mode7Mask]);
 }
@@ -2439,27 +2439,27 @@ IRAM_ATTR static uint32_t Q_INTERPOLATE(uint32_t A, uint32_t B, uint32_t C, uint
    return x + y;
 }
 
-static void DrawBGMode7Background16_i(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16_i(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7_i(uint16_t, theColor, (ScreenColors[b & GFX.Mode7Mask]));
 }
 
-static void DrawBGMode7Background16Add_i(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Add_i(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7_i(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? (COLOR_ADD(theColor, p[GFX.Delta])) : (COLOR_ADD(theColor, GFX.FixedColour))) : theColor, (ScreenColors[b & GFX.Mode7Mask]));
 }
 
-static void DrawBGMode7Background16Add1_2_i(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Add1_2_i(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7_i(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_ADD1_2(theColor, p[GFX.Delta]) : COLOR_ADD(theColor, GFX.FixedColour)) : theColor, (ScreenColors[b & GFX.Mode7Mask]));
 }
 
-static void DrawBGMode7Background16Sub_i(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Sub_i(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7_i(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_SUB(theColor, p[GFX.Delta]) : COLOR_SUB(theColor, GFX.FixedColour)) : theColor, (ScreenColors[b & GFX.Mode7Mask]));
 }
 
-static void DrawBGMode7Background16Sub1_2_i(uint8_t* Screen, int32_t bg)
+IRAM_ATTR static void DrawBGMode7Background16Sub1_2_i(uint8_t* Screen, int32_t bg)
 {
    RENDER_BACKGROUND_MODE7_i(uint16_t, *(d + GFX.DepthDelta) ? (*(d + GFX.DepthDelta) != 1 ? COLOR_SUB1_2(theColor, p[GFX.Delta]) : COLOR_SUB(theColor, GFX.FixedColour)) : theColor, (ScreenColors[b & GFX.Mode7Mask]));
 }
@@ -2598,7 +2598,7 @@ static void RenderScreen(uint8_t* Screen, bool sub, bool force_no_add, uint8_t D
    }
 }
 
-void S9xUpdateScreen(void)
+IRAM_ATTR void S9xUpdateScreen(void)
 {
    int32_t x2 = 1;
    uint32_t starty, endy, black;

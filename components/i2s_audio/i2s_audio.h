@@ -53,7 +53,7 @@ private:
     friend void writer_task(void *param);
 
 public:
-    void start(i2s_port_t i2sPort, i2s_pin_config_t &i2sPins, int sample_rate, int16_t* pcm_buffer, uint32_t pcm_buffer_len);
+    void start(int pin_bck, int pin_ws, int pin_dout, int sample_rate,int16_t* pcm_buffer, uint32_t pcm_buffer_len);
     virtual int get_sample_rate() { return m_sample_rate; }
     virtual void set_next_buffer(int16_t* pcm_buffer);
 };

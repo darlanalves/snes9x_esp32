@@ -13,6 +13,8 @@
 #include "memmap.h"
 #include "cpuexec.h"
 
+#include "esp_heap_caps.h"
+
 #define CLIP16(v) \
 (v) = (((v) <= -32768) ? -32768 : (((v) >= 32767) ? 32767 : (v)))
 
@@ -1018,13 +1020,13 @@ bool S9xInitSound(int32_t buffer_ms, int32_t lag_ms)
    if (sample_count < sample_rate / 50)
       sample_count = sample_rate / 50;
 
-   wave = malloc(sample_count * sizeof(wave[0]));
+   wave = heap_caps_malloc(sample_count * sizeof(wave[0]), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
    assert(wave);
-   MixBuffer = malloc(sample_count * sizeof(MixBuffer[0]));
+   MixBuffer = heap_caps_malloc(sample_count * sizeof(MixBuffer[0]), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
    assert(MixBuffer);
-   EchoBuffer = malloc(sample_count * sizeof(EchoBuffer[0]));
+   EchoBuffer = heap_caps_malloc(sample_count * sizeof(EchoBuffer[0]), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
    assert(EchoBuffer);
-   Echo = malloc(24000 * sizeof(Echo[0]));
+   Echo = heap_caps_malloc(24000 * sizeof(Echo[0]), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
    assert(Echo);
    so.playback_rate = 0;
    S9xResetSound(true);

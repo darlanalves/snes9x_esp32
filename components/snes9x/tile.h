@@ -10,23 +10,16 @@
     uint32_t TileNumber; \
     uint32_t TileAddr
 
+#ifdef DISABLE_TILE_CACHE
 #define TILE_PREAMBLE_CODE() \
+/* fcipaq, disable tile buffering to save memory */\
     TileAddr = BG.TileAddress + ((Tile & 0x3ff) << BG.TileShift); \
     if ((Tile & 0x1ff) >= 256) \
        TileAddr += BG.NameSelect; \
     TileAddr &= 0xffff; \
-/* fcipaq, disable tile buffering to save memory */\
     TileNumber = (TileAddr >> BG.TileShift); \
     pCache = BG.Buffer; \
     BG.Buffered[TileNumber] = ConvertTile (pCache, TileAddr); \
-/*
-    pCache = &BG.Buffer[(TileNumber = (TileAddr >> BG.TileShift)) << 6]; \
-    if (BG.Buffered [TileNumber] != (0x10|BG.Depth)) \
-    { \
-      BG.Buffered[TileAddr >> 4] = BG.Buffered[TileAddr >> 5] = BG.Buffered[TileAddr >> 6] = false; \
-      BG.Buffered[TileNumber] = ConvertTile (pCache, TileAddr); \
-    } \
-*/ \
     if (BG.Buffered [TileNumber] == BLANK_TILE) \
        return; \
     if (BG.DirectColourMode) \
@@ -37,6 +30,29 @@
     } \
     else \
        ScreenColors = &IPPU.ScreenColors [(((Tile >> 10) & BG.PaletteMask) << BG.PaletteShift) + BG.StartPalette]
+#else
+#define TILE_PREAMBLE_CODE() \
+    TileAddr = BG.TileAddress + ((Tile & 0x3ff) << BG.TileShift); \
+    if ((Tile & 0x1ff) >= 256) \
+       TileAddr += BG.NameSelect; \
+    TileAddr &= 0xffff; \
+    pCache = &BG.Buffer[(TileNumber = (TileAddr >> BG.TileShift)) << 6]; \
+    if (BG.Buffered [TileNumber] != (0x10|BG.Depth)) \
+    { \
+      BG.Buffered[TileAddr >> 4] = BG.Buffered[TileAddr >> 5] = BG.Buffered[TileAddr >> 6] = false; \
+      BG.Buffered[TileNumber] = ConvertTile (pCache, TileAddr); \
+    } \
+    if (BG.Buffered [TileNumber] == BLANK_TILE) \
+       return; \
+    if (BG.DirectColourMode) \
+    { \
+       if (IPPU.DirectColourMapsNeedRebuild) \
+          S9xBuildDirectColourMaps (); \
+       ScreenColors = DirectColourMaps [(Tile >> 10) & BG.PaletteMask]; \
+    } \
+    else \
+       ScreenColors = &IPPU.ScreenColors [(((Tile >> 10) & BG.PaletteMask) << BG.PaletteShift) + BG.StartPalette]
+#endif
 
 #define RENDER_TILE(NORMAL, FLIPPED, N) \
     switch (Tile & (V_FLIP | H_FLIP)) \

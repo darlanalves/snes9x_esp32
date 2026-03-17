@@ -9,11 +9,13 @@
 #include "soundux.h"
 #include "cpuexec.h"
 
+#include "esp_heap_caps.h"
+
 extern int32_t NoiseFreq[32];
 
 bool S9xInitAPU()
 {
-   IAPU.RAM = (uint8_t*) malloc(0x10000);
+   IAPU.RAM = (uint8_t*) heap_caps_malloc(0x10000, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
 
    if (!IAPU.RAM)
    {

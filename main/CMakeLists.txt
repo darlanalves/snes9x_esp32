@@ -1,8 +1,7 @@
 idf_component_register(SRCS ./main.cpp
-                            ./disp_drv.cpp
-                       INCLUDE_DIRS ./.. ./../components/lcddrv ./../components/snes9x ./../components/i2s_audio
-                       REQUIRES
-                       PRIV_REQUIRES )
+                       INCLUDE_DIRS ./.. ./../components/lcd ./../components/snes9x ./../components/i2s_audio ./../components/usbhid ./../components/engine ./../components/emumgr
+                       REQUIRES 
+                       PRIV_REQUIRES engine fatfs esp_timer driver i2s_audio usbhid )
 
 target_compile_options(${COMPONENT_LIB} PRIVATE -DCOMPILEDATE="$(COMPILEDATE)" -DGITREV="$(GITREV)")
 
