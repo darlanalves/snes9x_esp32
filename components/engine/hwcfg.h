@@ -5,7 +5,7 @@
 // 2: Pico Held 2 v 1.3
 // 3: Pico Held 2 v 1.4
 
-#define HW_CONFIG (0)
+#define HW_CONFIG (2)
 
 #if HW_CONFIG==0
 // ADC calibration coefficients
@@ -86,10 +86,10 @@
 #define LCD_ROTATION
 
 // ADC calibration coefficients
-#define PWR_BAT_ADC_A (5803)
-#define PWR_BAT_ADC_B (-11511)
-#define PWR_EXT_ADC_A (2749)
-#define PWR_EXT_ADC_B (-948)
+#define PWR_BAT_ADC_A (1365)
+#define PWR_BAT_ADC_B (-597)
+#define PWR_EXT_ADC_A (1)
+#define PWR_EXT_ADC_B (0)
 
 // Physical battery and power supply parameters (in mV)
 #define PWR_BAT_MAX_VOL (4050)
@@ -134,8 +134,8 @@
 #define PIN_ANA_X (GPIO_NUM_16)
 #define PIN_ANA_Y (GPIO_NUM_17)
 
-#define PIN_ANA_VBAT (GPIO_NUM_20)
-#define PIN_ANA_VEXT (GPIO_NUM_19)
+#define PIN_ANA_VBAT (GPIO_NUM_19)
+#define PIN_ANA_VEXT (GPIO_NUM_18)
 
 #define PIN_STAT_LED (GPIO_NUM_33)
 

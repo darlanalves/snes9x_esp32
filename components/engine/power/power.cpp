@@ -31,8 +31,12 @@ int pwr_get_bat_vol() {
     return 0;
 
   int raw = adc_analog_read(PIN_ANA_VBAT);
-  
+
+#if 1  
   int vol = pwr_get_calibrated_volt(raw, PWR_BAT_ADC_A, PWR_BAT_ADC_B);
+#else
+  int vol = raw;
+#endif
 
   bat_vol = (bat_vol * ADC_AVG_WIN + vol) / (ADC_AVG_WIN + 1);
   printf("avg vbat is: %d\n", (int) bat_vol);

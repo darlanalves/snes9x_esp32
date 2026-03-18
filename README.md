@@ -12,3 +12,8 @@ Features:
 - battery status indicator
 - some settings available
 - Limited USB-HID controller support
+
+Building:
+
+- Pick your hardware platform (in components/engine/hwcfg.h)
+- Just build and flash with ESP-IDF (idf.py flash)
