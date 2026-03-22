@@ -27,8 +27,8 @@
 
 #include "emumgr_hal.h"
 #include "emumgr.h"
-#include "emumgr_lang_de.h"
-//#include "emumgr_lang_en.h"
+//#include "emumgr_lang_de.h"
+#include "emumgr_lang_en.h"
 #include "heapstrings.h"
 
 // assets

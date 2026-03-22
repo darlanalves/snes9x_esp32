@@ -39,7 +39,7 @@ int pwr_get_bat_vol() {
 #endif
 
   bat_vol = (bat_vol * ADC_AVG_WIN + vol) / (ADC_AVG_WIN + 1);
-  printf("avg vbat is: %d\n", (int) bat_vol);
+  //printf("avg vbat is: %d\n", (int) bat_vol);
   result_volt = bat_vol;
 
   return bat_vol;

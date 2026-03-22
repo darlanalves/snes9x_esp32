@@ -5,7 +5,7 @@
 // 2: Pico Held 2 v 1.3
 // 3: Pico Held 2 v 1.4
 
-#define HW_CONFIG (2)
+#define HW_CONFIG (3)
 
 #if HW_CONFIG==0
 // ADC calibration coefficients
@@ -161,8 +161,8 @@
 #define LCD_ROTATION
 
 // ADC calibration coefficients
-#define PWR_BAT_ADC_A (5803)
-#define PWR_BAT_ADC_B (-11511)
+#define PWR_BAT_ADC_A (1365)
+#define PWR_BAT_ADC_B (-597)
 #define PWR_EXT_ADC_A (2749)
 #define PWR_EXT_ADC_B (-948)
 
